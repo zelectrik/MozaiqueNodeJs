@@ -1,0 +1,19 @@
+{
+  "name": "appweb",
+  "version": "0.1.0",
+  "description": "Web app mosaic",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thibault Dufour",
+  "license": "ISC"
+}

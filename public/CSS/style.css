@@ -1,0 +1,49 @@
+body{
+	overflow-x: hidden;
+	background-color: #141414;
+}
+
+h1{
+	text-align: center;
+	color: #ECEFF1;
+}
+
+/*Class pour une photo non sélectionné*/
+.unfocus{
+	width: 100%;
+	transition: transform 0.2s;
+	padding: 10px;
+}
+
+/*On grossi une photo non sélectionné et on change l'icone du pointeur si on passe dessus*/
+.unfocus:hover
+{
+	cursor: pointer;
+	transform: scale(1.01);
+}
+
+/*Class pour une photo sélectionné*/
+.focus
+{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	top:0px;
+	left: 0px;
+	margin:0px;
+	padding: 0px;
+}
+
+/*on change l'icone du pointeur si on passe dessus*/
+.focus:hover
+{
+	cursor: pointer;
+}
+
+/*Class pour une colone*/
+.container-col
+{
+	margin: 0px;
+	padding: 0px;
+}

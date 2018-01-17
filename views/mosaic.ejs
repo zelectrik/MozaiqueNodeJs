@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Mosaique</title>
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="CSS/style.css">
+    </head>
+ 
+    <body>
+        <h1>Mosaique</h1>
+            <section class="row">
+                <!-- Gerer le placement des images dans la mosaic -->
+
+                <!-- Variable -->
+                <% value=9 %> <!-- Toutes les x images il y a une grande image -->
+                <% modulo1=0 %> <!-- Permetre la gestion des colonnes -->
+                <% modulo2=1 %> <!-- Permetre la gestion des colonnes -->
+                <% rowSwitch=0 %> <!-- Permetre de créer les rows autour des images-->
+                <% finishRow=0 %> <!-- Permetre de créer les rows autour des images-->
+
+                <!-- Fonction -->
+                <% arrayPathImages.forEach(function(pathImage,index){ %><!-- Pour chaque images-->
+                    <% if(rowSwitch%8 == 0){%><!-- Si il y a 8 point d'image dans la row-->
+                        <% if(index > 0){%><!-- Si on est au dessus de la première image-->
+                            </div>
+                        <%}%>
+                        <% if(index >= arrayPathImages.length - 4){%><!-- Si il reste moins de 4 images-->
+                            <% finishRow=1 %> 
+                            <%if(index%2 == modulo2) {%>
+                                </div>
+                            <%}%>
+                        <%}%> 
+                        <div class="row"><!-- On ouvre une nouvelle row-->
+                    <%}%>
+                    <% if(finishRow==0){%><!-- Si il reste plus de 4 images à afficher-->
+                        <% if(index%value == 0){%><!-- Si l'image est la x ième image après une grande image ou le début-->
+                            <div class="col-lg-6 col-xs-6 col-sm-6 container-col"><img class="unfocus" src=<%=pathImage%> alt='landscape'/></div><!-- On créer une grande image-->
+                            <% rowSwitch+=4  %><!-- On ajoute 4 points d'image car c'est une grande image-->
+                            <% if(modulo1 == 1){%><!-- On inverse les valeurs des variables modulo pour l'affichage-->
+                                <% modulo1=0 %>
+                                <% modulo2=1 %> 
+                            <%} else{%>
+                                <% modulo1=1 %>
+                                <% modulo2=0 %>
+                            <%}%> 
+                        <% } else if(index%2 == modulo1) {%><!-- Si on se situe apres une colone -->
+                            <div class="col-lg-3 col-xs-3 col-sm-3 container-col"><!--On créer une colone -->
+                                <div class="col-lg-12 col-xs-12 col-sm-12 container-col"><img class="unfocus"src=<%=pathImage%> alt='landscape'/></div><!-- On créer une petit image -->
+                            <% rowSwitch+=1  %><!-- On ajoute 1 points d'image car c'est une petite image -->
+                        <% } else if(index%2 == modulo2) {%><!-- Si on se situe dans une colone -->
+                                <div class="col-lg-12 col-xs-12 col-sm-12 container-col"><img class="unfocus"src=<%=pathImage%> alt='landscape'/></div><!-- On créer une petit image -->
+                            </div><!--On ferme la colone -->
+                            <% rowSwitch+=1  %><!-- On ajoute 1 points d'image car c'est une petite image -->
+                        <% }%>
+                    <% } else {%><!-- Si il reste moins de 4 images à afficher-->
+                        <div class="col-lg-3 col-xs-3 col-sm-3 container-col"><img class="unfocus"src=<%=pathImage%> alt='landscape'/></div><!-- On créer une petit image -->
+                        <% rowSwitch+=1  %><!-- On ajoute 1 points d'image car c'est une petite image -->
+                        <% if(index == arrayPathImages.length - 1){%><!-- Si on est à la dernière image-->
+                                </div><!-- On ferme la row-->
+                        <%}%>
+                    <% }%>
+                <%});%>
+            </section>
+        <script src="JS/jquery-3.2.1.min.js"></script>
+        <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="JS/script.js"></script>
+    </body>
+</html>
